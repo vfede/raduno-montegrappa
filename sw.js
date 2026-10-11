@@ -1,5 +1,5 @@
-/* Raduno del Montegrappa — offline cache (precache + network update) */
-const CACHE = 'raduno-v1';
+/* Raduno del Montegrappa — offline cache (precache + runtime update) */
+const CACHE = 'raduno-v2';
 const ASSETS = [
   './',
   './index.html',
@@ -17,22 +17,25 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', function (e) {
-  e.waitUntil(
-    caches.open(CACHE)
-      .then(function (c) { return c.addAll(ASSETS); })
-      .then(function () { return self.skipWaiting(); })
-  );
+  e.waitUntil((async function () {
+    const c = await caches.open(CACHE);
+    await Promise.all(ASSETS.map(async function (a) {
+      /* cache:'reload' bypasses the browser HTTP cache: always fresh content */
+      const res = await fetch(new Request(a, { cache: 'reload' }));
+      if (!res || !res.ok) throw new Error('precache failed: ' + a);
+      await c.put(a, res);
+    }));
+    await self.skipWaiting();
+  })());
 });
 
 self.addEventListener('activate', function (e) {
-  e.waitUntil(
-    caches.keys()
-      .then(function (ks) {
-        return Promise.all(ks.filter(function (k) { return k !== CACHE; })
-          .map(function (k) { return caches.delete(k); }));
-      })
-      .then(function () { return self.clients.claim(); })
-  );
+  e.waitUntil((async function () {
+    const keys = await caches.keys();
+    await Promise.all(keys.filter(function (k) { return k !== CACHE; })
+      .map(function (k) { return caches.delete(k); }));
+    await self.clients.claim();
+  })());
 });
 
 self.addEventListener('fetch', function (e) {
