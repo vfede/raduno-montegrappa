@@ -1,5 +1,5 @@
 /* Raduno del Montegrappa — offline cache (precache + runtime update) */
-const CACHE = 'raduno-v2';
+const CACHE = 'raduno-v3';
 const ASSETS = [
   './',
   './index.html',
