@@ -31,6 +31,11 @@ main{padding:24px 16px 60px}.notice{background:#fff;border-left:7px solid var(--
 #lightbox.open ~ #lb-nav,#lb-nav.open{display:inline-flex}
 .preload-group{display:none}
 #offhint{background:#10241c;color:#cfe9dd;border-radius:10px;padding:10px 14px;margin:14px auto 0;font-size:16px;max-width:720px;text-align:center}
+#lb-coords{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);display:none;align-items:center;gap:10px;background:rgba(16,27,43,.9);color:#dfe8f2;border-radius:999px;padding:9px 10px 9px 16px;font-size:15px;font-weight:700;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+#lb-coords.open{display:inline-flex}
+#lb-copy{border:none;background:var(--gold);color:var(--navy);font-weight:900;font-size:13px;border-radius:999px;padding:6px 12px;cursor:pointer;font-family:Arial,Helvetica,sans-serif}
+#lb-copy:hover{background:#c9903f}
+@media print{#lb-coords{display:none}}
 @media print{#lb-nav{display:none}}
 @media(min-width:720px){main{padding:34px 22px 70px}.stage-head{padding:28px 30px 8px}.stage-body{padding:0 30px 30px}.stage h2{font-size:30px}.notice{padding:25px 28px}}
 @media print{body{background:#fff}.hero{padding:24px}.mapbtn{background:#1769d2!important;color:#fff!important;print-color-adjust:exact}.stage{break-inside:avoid;box-shadow:none}.quicknav,.photobtn,#lightbox{display:none}}
@@ -173,24 +178,41 @@ main{padding:24px 16px 60px}.notice{background:#fff;border-left:7px solid var(--
   <p><strong>Buon raduno e buona strada!</strong></p>
   <p>Usa i pulsanti blu per aprire ogni destinazione direttamente in Google Maps e i pulsanti dorati per un’anteprima del percorso. Segui sempre le indicazioni degli organizzatori e la segnaletica stradale.</p>
   <p><a class="pdfbtn" href="percorso-raduno-montegrappa.pdf" download>Download PDF</a></p>
-  <p id="offhint">Questa pagina funziona anche offline: la prima visita salva tutto nella memoria del telefono (immagini incluse). Il pulsante Naviga usa il GPS e le coordinate, ma la mappa dell’app di navigazione deve essere scaricata offline a parte.</p>
+  <p id="offhint">Questa pagina funziona anche offline: la prima visita salva tutto nella memoria del telefono (immagini incluse). Su iPhone il pulsante Naviga apre Mappe (Apple), su Android il navigatore, e sotto trovi le coordinate da copiare in un navigatore offline (es. Organic Maps). Il pulsante usa il GPS e le coordinate, ma la mappa dell’app di navigazione deve essere scaricata offline a parte.</p>
   <p class="small" style="color:#c7d1dd">Contenuti ricavati dal documento “Descrizione percorso Raduno del Montegrappa”. I collegamenti aprono una ricerca/destinazione in Google Maps; verifica sempre il percorso suggerito prima di partire.</p>
  </div>
 </footer>
-<div id="lightbox"><button id="lb-close" type="button" aria-label="Chiudi anteprima">&#10005;</button><img id="lb-img" alt=""><a id="lb-nav" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-8-8 19-2-9-9-2Z"/></svg>Naviga verso la tappa</a></div>
+<div id="lightbox"><button id="lb-close" type="button" aria-label="Chiudi anteprima">&#10005;</button><img id="lb-img" alt=""><a id="lb-nav" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-8-8 19-2-9-9-2Z"/></svg>Naviga verso la tappa</a><div id="lb-coords"><span id="lb-coordstxt"></span><button id="lb-copy" type="button">Copia</button></div></div>
 <script>
 (function(){
- var lb=document.getElementById('lightbox'),img=document.getElementById('lb-img'),x=document.getElementById('lb-close'),nav=document.getElementById('lb-nav');
+ var lb=document.getElementById('lightbox'),img=document.getElementById('lb-img'),x=document.getElementById('lb-close'),nav=document.getElementById('lb-nav'),coordTxt=document.getElementById('lb-coordstxt'),coordsBox=document.getElementById('lb-coords'),copyBtn=document.getElementById('lb-copy');
  function openLb(btn){
   img.src=btn.getAttribute('data-full');
   var lat=btn.getAttribute('data-lat'),lon=btn.getAttribute('data-lon'),nm=btn.getAttribute('data-name')||'destinazione';
   if(lat&&lon){
-   nav.href='geo:'+lat+','+lon+'?q='+lat+','+lon+' ('+encodeURIComponent(nm)+')';
-   nav.classList.add('open');
-  }else{nav.classList.remove('open');}
+   var ua=navigator.userAgent||'';
+   var isIOS=/iPad|iPhone|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+   var isAndroid=/Android/.test(ua);
+   if(isIOS){nav.href='https://maps.apple.com/?daddr='+lat+','+lon+'&q='+encodeURIComponent(nm);}
+   else if(isAndroid){nav.href='geo:'+lat+','+lon+'?q='+lat+','+lon+' ('+encodeURIComponent(nm)+')';}
+   else{nav.href='https://www.google.com/maps/dir/?api=1&destination='+lat+','+lon;}
+   coordTxt.textContent=lat+', '+lon;
+   nav.classList.add('open');coordsBox.classList.add('open');
+  }else{nav.classList.remove('open');coordsBox.classList.remove('open');}
   lb.classList.add('open');document.body.style.overflow='hidden';
  }
- function closeLb(){lb.classList.remove('open');nav.classList.remove('open');document.body.style.overflow='';setTimeout(function(){img.removeAttribute('src');},150);}
+ function closeLb(){lb.classList.remove('open');nav.classList.remove('open');coordsBox.classList.remove('open');document.body.style.overflow='';setTimeout(function(){img.removeAttribute('src');},150);}
+ copyBtn.addEventListener('click',function(){
+  var t=coordTxt.textContent;
+  function done(ok){copyBtn.textContent=ok?'Copiate ✓':'Errore';setTimeout(function(){copyBtn.textContent='Copia';},1600);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+   navigator.clipboard.writeText(t).then(function(){done(true);},function(){done(false);});
+  }else{
+   var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();
+   try{done(document.execCommand('copy'));}catch(e){done(false);}
+   document.body.removeChild(ta);
+  }
+ });
  document.querySelectorAll('.photobtn').forEach(function(b){
   b.addEventListener('click',function(e){e.preventDefault();openLb(b);});
  });
