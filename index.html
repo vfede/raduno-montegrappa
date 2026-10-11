@@ -25,11 +25,19 @@ main{padding:24px 16px 60px}.notice{background:#fff;border-left:7px solid var(--
 #lb-img{max-width:100%;max-height:calc(100vh - 36px);border-radius:10px;box-shadow:0 10px 60px rgba(0,0,0,.6)}
 #lb-close{position:fixed;top:14px;right:14px;width:64px;height:64px;border-radius:50%;background:var(--red);color:#fff;border:none;font-size:36px;font-weight:900;line-height:1;cursor:pointer;display:grid;place-items:center;box-shadow:0 4px 20px rgba(0,0,0,.45);font-family:Arial,Helvetica,sans-serif}
 #lb-close:hover{background:#a9202b}
+#lb-nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:none;align-items:center;justify-content:center;gap:10px;background:#2e8064;color:#fff!important;text-decoration:none;font-weight:900;font-size:19px;line-height:1.2;border-radius:12px;padding:15px 19px;min-height:56px;box-shadow:0 4px 18px rgba(0,0,0,.5)}
+#lb-nav:hover{background:#256b53}
+#lb-nav svg{width:23px;height:23px;flex:none}
+#lightbox.open ~ #lb-nav,#lb-nav.open{display:inline-flex}
+.preload-group{display:none}
+#offhint{background:#10241c;color:#cfe9dd;border-radius:10px;padding:10px 14px;margin:14px auto 0;font-size:16px;max-width:720px;text-align:center}
+@media print{#lb-nav{display:none}}
 @media(min-width:720px){main{padding:34px 22px 70px}.stage-head{padding:28px 30px 8px}.stage-body{padding:0 30px 30px}.stage h2{font-size:30px}.notice{padding:25px 28px}}
 @media print{body{background:#fff}.hero{padding:24px}.mapbtn{background:#1769d2!important;color:#fff!important;print-color-adjust:exact}.stage{break-inside:avoid;box-shadow:none}.quicknav,.photobtn,#lightbox{display:none}}
 </style>
 </head>
 <body>
+<div class="preload-group" aria-hidden="true"><img src="img/t1.jpg" alt="" loading="eager" fetchpriority="high" decoding="async"><img src="img/t2-foto.jpg" alt="" loading="eager" fetchpriority="high" decoding="async"><img src="img/t2-mappa.jpg" alt="" loading="eager" fetchpriority="high" decoding="async"><img src="img/t3-foto.jpg" alt="" loading="eager" fetchpriority="high" decoding="async"><img src="img/t3-mappa.jpg" alt="" loading="eager" fetchpriority="high" decoding="async"><img src="img/t4.jpg" alt="" loading="eager" fetchpriority="high" decoding="async"><img src="img/t5.jpg" alt="" loading="eager" fetchpriority="high" decoding="async"><img src="img/t6.jpg" alt="" loading="eager" fetchpriority="high" decoding="async"><img src="img/t7.jpg" alt="" loading="eager" fetchpriority="high" decoding="async"><img src="img/t8.jpg" alt="" loading="eager" fetchpriority="high" decoding="async"></div>
 <header class="hero" id="top">
  <div class="wrap">
   <div class="eyebrow">Porsche Club · Registro Italiano 914–Boxster–Cayman</div>
@@ -59,7 +67,7 @@ main{padding:24px 16px 60px}.notice{background:#fff;border-left:7px solid var(--
   <div class="stage-head"><div class="num">1</div><div><div class="day">Sabato · Prima tappa</div><h2>Il Canova, il Prosecco e la collina del Cartizze</h2></div></div>
   <div class="stage-body">
    <p class="destination">Ritrovo al Tempio Canoviano di Possagno</p>
-   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Tempio+Canoviano+di+Possagno&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri la tappa su Google Maps</a><a class="photobtn" href="img/t1.jpg" data-full="img/t1.jpg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
+   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Tempio+Canoviano+di+Possagno&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri la tappa su Google Maps</a><a class="photobtn" href="img/t1.jpg" data-full="img/t1.jpg" data-lat="45.858150" data-lon="11.878155" data-name="Tempio Canoviano di Possagno" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
    <p>Il Tempio Canoviano è una versione ispirata al Pantheon di Roma, costruita su un colle: un punto magnifico per una foto.</p>
    <p>Chi arriva in anticipo può fare colazione alla <strong>Pasticceria Aurora</strong>, famosa per le meringhe, sul piazzale del Museo Canova, appena sotto il Tempio. Un bancomat si trova circa 200 metri prima del Tempio.</p>
    <p>Si prosegue verso Valdobbiadene, attraversando il Piave a Fener, per entrare nella zona del Prosecco.</p>
@@ -74,7 +82,7 @@ main{padding:24px 16px 60px}.notice{background:#fff;border-left:7px solid var(--
   <div class="stage-head"><div class="num">2</div><div><div class="day">Sabato · Seconda tappa</div><h2>L’ippopotamo del Monte Cesen e la malga</h2></div></div>
   <div class="stage-body">
    <p class="destination">Malga Barbaria, Passo Mariech 9, 31049 Valdobbiadene (TV)</p>
-   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Malga+Barbaria%2C+Passo+Mariech+9%2C+31049+Valdobbiadene+TV&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri Malga Barbaria su Google Maps</a><a class="photobtn" href="img/t2-mappa.jpg" data-full="img/t2-mappa.jpg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
+   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Malga+Barbaria%2C+Passo+Mariech+9%2C+31049+Valdobbiadene+TV&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri Malga Barbaria su Google Maps</a><a class="photobtn" href="img/t2-mappa.jpg" data-full="img/t2-mappa.jpg" data-lat="45.933636" data-lon="12.019587" data-name="Malga Barbaria" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
    <img class="stagephoto" src="img/t2-foto.jpg" alt="Foto: Il Monte Cesen, il monte dell’Ippopotamo" loading="lazy">
    <p>Degustazione di formaggi sul Monte Cesen, il monte dell’“Ippopotamo”, con vista sul Monte Domion e sulla pianura. Con un po’ di fortuna si può vedere Venezia.</p>
    <div class="warning">Strada secondaria, tortuosa e in salita. A volte possono esserci piccoli sassi sulla carreggiata.</div>
@@ -87,7 +95,7 @@ main{padding:24px 16px 60px}.notice{background:#fff;border-left:7px solid var(--
   <div class="stage-head"><div class="num">3</div><div><div class="day">Sabato · Terza tappa</div><h2>Il “Mulino Bianco”</h2></div></div>
   <div class="stage-body">
    <p class="destination">Molinetto della Croda, Via Molinetto 40, Refrontolo</p>
-   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Molinetto+della+Croda%2C+Via+Molinetto+40%2C+Refrontolo&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri il Molinetto su Google Maps</a><a class="photobtn" href="img/t3-mappa.jpg" data-full="img/t3-mappa.jpg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
+   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Molinetto+della+Croda%2C+Via+Molinetto+40%2C+Refrontolo&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri il Molinetto su Google Maps</a><a class="photobtn" href="img/t3-mappa.jpg" data-full="img/t3-mappa.jpg" data-lat="45.937922" data-lon="12.191718" data-name="Molinetto della Croda" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
    <img class="stagephoto" src="img/t3-foto.jpg" alt="Foto: Il Molinetto della Croda a Refrontolo" loading="lazy">
    <p>È la tappa più lunga: circa <strong>29 km</strong>. La prima parte è una lunga discesa con qualche strettoia: dopo circa 10 minuti è prevista una breve pausa al Piazzale del Donatore di Pianezze per far raffreddare i freni, poi altri 20 minuti di discesa. Si continua tra i vigneti, passando nuovamente davanti alla cantina.</p>
    <p>Dopo Guia, rallentare: superato un ponte, sulla sinistra si può finalmente vedere l’Ippopotamo dalla giusta angolazione.</p>
@@ -100,7 +108,7 @@ main{padding:24px 16px 60px}.notice{background:#fff;border-left:7px solid var(--
   <div class="stage-head"><div class="num">4</div><div><div class="day">Sabato · Quarta tappa</div><h2>CastelBrando</h2></div></div>
   <div class="stage-body">
    <p class="destination">CastelBrando, Via Brandolini Brando 29, 31030 Cison di Valmarino (TV)</p>
-   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=CastelBrando%2C+Via+Brandolini+Brando+29%2C+31030+Cison+di+Valmarino+TV&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri CastelBrando su Google Maps</a><a class="photobtn" href="img/t4.jpg" data-full="img/t4.jpg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
+   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=CastelBrando%2C+Via+Brandolini+Brando+29%2C+31030+Cison+di+Valmarino+TV&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri CastelBrando su Google Maps</a><a class="photobtn" href="img/t4.jpg" data-full="img/t4.jpg" data-lat="45.968301" data-lon="12.135557" data-name="CastelBrando" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
    <p>Dal Molinetto della Croda si raggiunge la destinazione finale del sabato percorrendo una piccola strada poco frequentata tra i vigneti.</p>
    <p>Il castello è raggiungibile con la teleferica dal grande parcheggio, ma il gruppo parcheggerà salendo lungo la strada del castello, nei posti prenotati.</p>
    <p><strong>In attesa della cena, due possibilità:</strong></p>
@@ -113,7 +121,7 @@ main{padding:24px 16px 60px}.notice{background:#fff;border-left:7px solid var(--
   <div class="stage-head"><div class="num">5</div><div><div class="day">Domenica · Quinta tappa</div><h2>La strada dei 100 giorni e l’antica Osteria La Muda</h2></div></div>
   <div class="stage-body">
    <p class="destination">Passo San Boldo, 31030 Cison di Valmarino (TV)</p>
-   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Passo+San+Boldo%2C+31030+Cison+di+Valmarino+TV&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri Passo San Boldo su Google Maps</a><a class="photobtn" href="img/t5.jpg" data-full="img/t5.jpg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
+   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Passo+San+Boldo%2C+31030+Cison+di+Valmarino+TV&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri Passo San Boldo su Google Maps</a><a class="photobtn" href="img/t5.jpg" data-full="img/t5.jpg" data-lat="46.005000" data-lon="12.169722" data-name="Passo San Boldo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
    <p>Una strada incredibile, costruita in 100 giorni dagli austriaci, nota per i raduni Porsche, Ferrari, moto e Vespa.</p>
    <p>Al tornante 7 si trova un pannello con fotografie storiche della costruzione. Poco dopo c’è un semaforo a senso unico alternato: la colonna si dividerà, ma non ci sono bivi e ci si ritroverà alla fine del semaforo.</p>
    <p>Subito a destra si sale per una breve rampa e si parcheggia. Se possibile, si visiterà <strong>La Muda</strong>, indicata nel percorso come la più antica osteria del Veneto.</p>
@@ -127,7 +135,7 @@ main{padding:24px 16px 60px}.notice{background:#fff;border-left:7px solid var(--
    <p>Si scende verso Trichiana, il “Paese del libro”. Nella prima parte, in discesa e rilassante, si possono ammirare le Dolomiti, il Nevegal e il Cansiglio in lontananza. A Busche si attraversa il Piave e si segue la SS50 passando per Feltre e vicino all’ospedale.</p>
    <p class="destination">Sosta tecnica: Beyfin PizzaBar</p>
    <p>Via Fenadora, SS50bis 2, 32030 Fonzaso (BL)</p>
-   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Beyfin+PizzaBar%2C+Via+Fenadora+SS50bis+2%2C+32030+Fonzaso+BL&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri la sosta tecnica su Google Maps</a><a class="photobtn" href="img/t6.jpg" data-full="img/t6.jpg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
+   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Beyfin+PizzaBar%2C+Via+Fenadora+SS50bis+2%2C+32030+Fonzaso+BL&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri la sosta tecnica su Google Maps</a><a class="photobtn" href="img/t6.jpg" data-full="img/t6.jpg" data-lat="46.002600" data-lon="11.826321" data-name="Beyfin PizzaBar" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
    <div class="warning">Dopo questa sosta per molti chilometri non troveremo più distributori: approfittare per fare rifornimento, se necessario.</div>
    <p>Per raggiungere il bar, dopo aver superato l’ospedale di Feltre si continua sulla SS50. Invece di salire verso il Grappa, si gira a sinistra e si prosegue per circa 900 metri fino alla grande stazione di servizio. Il bar è ben fornito ed è stato avvisato della nostra presenza.</p>
    <div class="subnote"><strong>Riordino della colonna</strong>Se necessario, anche a Busche, quando si attraversa il Piave.</div>
@@ -138,7 +146,7 @@ main{padding:24px 16px 60px}.notice{background:#fff;border-left:7px solid var(--
   <div class="stage-head"><div class="num">7</div><div><div class="day">Domenica · Settima tappa</div><h2>Monte Grappa: strada e storia</h2></div></div>
   <div class="stage-body">
    <p class="destination">Cima Grappa, Via Madonna del Covolo 161, 31017 Crespano del Grappa (TV)</p>
-   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Cima+Grappa%2C+Via+Madonna+del+Covolo+161%2C+31017+Crespano+del+Grappa+TV&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri Cima Grappa su Google Maps</a><a class="photobtn" href="img/t7.jpg" data-full="img/t7.jpg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
+   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Cima+Grappa%2C+Via+Madonna+del+Covolo+161%2C+31017+Crespano+del+Grappa+TV&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri Cima Grappa su Google Maps</a><a class="photobtn" href="img/t7.jpg" data-full="img/t7.jpg" data-lat="45.872989" data-lon="11.799181" data-name="Cima Grappa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
    <p>Dalla sosta tecnica si torna indietro per circa 900 metri e si seguono le indicazioni per Cima Grappa. Nei primi 2 km si passa tra curve e case ravvicinate: attenzione alle indicazioni per non finire nel cortile di un’abitazione.</p>
    <p>Il percorso è piacevole e tutto da guidare, ma in alcuni tratti la carreggiata è stretta e ci sono curve cieche.</p>
    <div class="warning">Per i primi 2 km restare vicini e compatti. Dopo non ci sono più incroci fino alla sommità e ci si può distanziare. Riordinarsi quando necessario.</div>
@@ -150,7 +158,7 @@ main{padding:24px 16px 60px}.notice{background:#fff;border-left:7px solid var(--
   <div class="stage-body">
    <p>Il percorso continua tra curve e panorami fino alla sommità. Qui ci si incolonna per girare a sinistra e percorrere gli ultimi 2 km verso la zona sacra, presidiata da un corpo di guardia militare.</p>
    <p class="destination">Rifugio Bassano, Cima Grappa</p>
-   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Rifugio+Bassano%2C+Cima+Grappa&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri Rifugio Bassano su Google Maps</a><a class="photobtn" href="img/t8.jpg" data-full="img/t8.jpg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
+   <div class="btnrow"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&destination=Rifugio+Bassano%2C+Cima+Grappa&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Apri Rifugio Bassano su Google Maps</a><a class="photobtn" href="img/t8.jpg" data-full="img/t8.jpg" data-lat="45.873391" data-lon="11.803011" data-name="Rifugio Bassano" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Anteprima</a></div>
    <p>Il parcheggio è ampio e il rifugio si trova lì vicino. Il panorama è magnifico e, con un po’ di fortuna, si potrà vedere Venezia per la seconda volta.</p>
    <p><strong>Dopo pranzo, visita libera a scelta:</strong></p>
    <ul><li>Il museo.</li><li>Il grande complesso monumentale.</li><li>Una passeggiata pianeggiante verso l’Abisso Spaurasso, con punto panoramico e resti di una base missilistica della Guerra fredda.</li></ul>
@@ -165,22 +173,41 @@ main{padding:24px 16px 60px}.notice{background:#fff;border-left:7px solid var(--
   <p><strong>Buon raduno e buona strada!</strong></p>
   <p>Usa i pulsanti blu per aprire ogni destinazione direttamente in Google Maps e i pulsanti dorati per un’anteprima del percorso. Segui sempre le indicazioni degli organizzatori e la segnaletica stradale.</p>
   <p><a class="pdfbtn" href="percorso-raduno-montegrappa.pdf" download>Download PDF</a></p>
+  <p id="offhint">Questa pagina funziona anche offline: la prima visita salva tutto nella memoria del telefono (immagini incluse). Il pulsante Naviga usa il GPS e le coordinate, ma la mappa dell’app di navigazione deve essere scaricata offline a parte.</p>
   <p class="small" style="color:#c7d1dd">Contenuti ricavati dal documento “Descrizione percorso Raduno del Montegrappa”. I collegamenti aprono una ricerca/destinazione in Google Maps; verifica sempre il percorso suggerito prima di partire.</p>
  </div>
 </footer>
-<div id="lightbox"><button id="lb-close" type="button" aria-label="Chiudi anteprima">&#10005;</button><img id="lb-img" alt=""></div>
+<div id="lightbox"><button id="lb-close" type="button" aria-label="Chiudi anteprima">&#10005;</button><img id="lb-img" alt=""><a id="lb-nav" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-8-8 19-2-9-9-2Z"/></svg>Naviga verso la tappa</a></div>
 <script>
 (function(){
- var lb=document.getElementById('lightbox'),img=document.getElementById('lb-img'),x=document.getElementById('lb-close');
- function openLb(src){img.src=src;lb.classList.add('open');document.body.style.overflow='hidden';}
- function closeLb(){lb.classList.remove('open');document.body.style.overflow='';setTimeout(function(){img.removeAttribute('src');},150);}
+ var lb=document.getElementById('lightbox'),img=document.getElementById('lb-img'),x=document.getElementById('lb-close'),nav=document.getElementById('lb-nav');
+ function openLb(btn){
+  img.src=btn.getAttribute('data-full');
+  var lat=btn.getAttribute('data-lat'),lon=btn.getAttribute('data-lon'),nm=btn.getAttribute('data-name')||'destinazione';
+  if(lat&&lon){
+   nav.href='geo:'+lat+','+lon+'?q='+lat+','+lon+' ('+encodeURIComponent(nm)+')';
+   nav.classList.add('open');
+  }else{nav.classList.remove('open');}
+  lb.classList.add('open');document.body.style.overflow='hidden';
+ }
+ function closeLb(){lb.classList.remove('open');nav.classList.remove('open');document.body.style.overflow='';setTimeout(function(){img.removeAttribute('src');},150);}
  document.querySelectorAll('.photobtn').forEach(function(b){
-  b.addEventListener('click',function(e){e.preventDefault();openLb(b.getAttribute('data-full'));});
+  b.addEventListener('click',function(e){e.preventDefault();openLb(b);});
  });
  x.addEventListener('click',closeLb);
  lb.addEventListener('click',function(e){if(e.target===lb)closeLb();});
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('open'))closeLb();});
 })();
+</script>
+
+<script>
+if('serviceWorker' in navigator){
+ window.addEventListener('load',function(){
+  navigator.serviceWorker.register('sw.js').then(function(reg){
+   reg.update().catch(function(){});
+  }).catch(function(){});
+ });
+}
 </script>
 </body>
 </html>
